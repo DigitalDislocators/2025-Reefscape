@@ -29,12 +29,10 @@ public class CTRESwerveModule extends SwerveModule {
     private final VelocityVoltage driveRequest = new VelocityVoltage(0).withSlot(0);
     private final PositionVoltage steerRequest = new PositionVoltage(0).withSlot(0);
 
+    // FIXME This class is currently untested. I am not super familiar with Phoenix6 and have no way to test this currently.
     public CTRESwerveModule(int canCoderID, int driveMtrID, int steerMtrID, Rotation2d moduleOffset) {
         this.moduleOffset = moduleOffset;
 
-        // TODO change to CANSparkMax depending on the motor controller
-        // driveMtr = new CANSparkFlex(driveMtrID, MotorType.kBrushless);
-        // steerMtr = new CANSparkFlex(steerMtrID, MotorType.kBrushless);
         driveMtr = new TalonFX(driveMtrID);
         steerMtr = new TalonFX(steerMtrID);
 
@@ -82,7 +80,6 @@ public class CTRESwerveModule extends SwerveModule {
     }
 
     public Rotation2d getSteerAngle() {
-        // FIXME check if necessary to make positive
         Rotation2d rot = Rotation2d.fromRadians(steerMtr.getPosition().getValueAsDouble());
         if (rot.getRadians() < 0.0) {
             rot = rot.plus(new Rotation2d(2.0 * Math.PI));
