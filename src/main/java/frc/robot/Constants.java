@@ -27,8 +27,8 @@ public final class Constants {
         public static final double massKg = 45.0; // ~100 lbs
 
         // TODO Set the frame dimensions of the robot.
-        public static final double robotWidthMeters = Units.inchesToMeters(26.0);
-        public static final double robotLengthMEters = Units.inchesToMeters(26.0);
+        public static final double robotWidthMeters = Units.inchesToMeters(21.75);
+        public static final double robotLengthMEters = Units.inchesToMeters(21.75);
 
         // Moment of inertia of a uniform-mass slab with the axis of rotation centered and perpendicular to the slab
         // This should be a reasonable approximation of the robot's MOI
@@ -38,33 +38,39 @@ public final class Constants {
 
 	public static class OperatorConstants {
 		public static final int kDriverControllerPort = 0;
+        public static final int operatorGamepadport = 1;
 
-		public static final double joystickDeadband = 0.1;
+		public static final double joystickDeadband = 0.15;
+        public static final double tiggerPressedThreshold = 0.25;
 	}
 
 	public static class CANDevices {
 		public static final int pigeonID = 14;
 
-		public static final int flModuleCANCoderID = 10;
-		public static final int flModuleDriveMtrID = 9;
-		public static final int flModuleSteerMtrID = 8;
+		public static final int flModuleCANCoderID = 2;
+		public static final int flModuleDriveMtrID = 6;
+		public static final int flModuleSteerMtrID = 10;
 
-		public static final int frModuleCANCoderID = 11;
-		public static final int frModuleDriveMtrID = 3;
-		public static final int frModuleSteerMtrID = 2;
+		public static final int frModuleCANCoderID = 3;
+		public static final int frModuleDriveMtrID = 7;
+		public static final int frModuleSteerMtrID = 11;
 
-		public static final int blModuleCANCoderID = 12;
-		public static final int blModuleDriveMtrID = 7;
-		public static final int blModuleSteerMtrID = 6;
+		public static final int blModuleCANCoderID = 4;
+		public static final int blModuleDriveMtrID = 8;
+		public static final int blModuleSteerMtrID = 12;
 
-		public static final int brModuleCANCoderID = 13;
-		public static final int brModuleDriveMtrID = 5;
-		public static final int brModuleSteerMtrID = 4;
+		public static final int brModuleCANCoderID = 5;
+		public static final int brModuleDriveMtrID = 9;
+		public static final int brModuleSteerMtrID = 13;
+
+        // left Mtr is leader and right Mtr is Follower
+        public static final int leftElevatorMtrID = 15;
+        public static final int rightElevatorMtrID = 16;
 	}
 
 	public static class SwerveModuleConstants {
         // TODO Tune the below PID and FF values using the SysID routines.
-        public static final double driveKp = 0.1;
+        public static final double driveKp = 0.13;
         public static final double driveKd = 0.0;
 
         public static final double steerKp = 0.37431;
@@ -85,29 +91,23 @@ public final class Constants {
         // TODO Set this value to the coefficient of friction of your wheels.
         public static final double wheelCoefficientOfFriction = 1.5;
 
-        // TODO Select the corresponding gear reduction for the configuration of your modules. This value is for MK4i L3 modules.
-        // This value can be found on the SDS website.
-        public static final double driveGearReduction = (14.0 / 50.0) * (28.0 / 16.0) * (15.0 / 45.0);
+        public static final double driveGearReduction = (16.0 / 50.0) * (27.0 / 17.0) * (15.0 / 45.0);
 
         public static final double driveMetersPerEncRev = driveGearReduction * 2.0 * wheelRadiusMeters * Math.PI;
 
         public static final double driveMetersPerSecPerEncRPM = driveMetersPerEncRev / 60.0;
 
-        // TODO Select the correstponding gear reduction for the configuration of your modules. This value is for MK4i modules.
-        // This value can be found on the SDS website.
-        public static final double steerGearReduction = 7.0 / 150.0;
+        public static final double steerGearReduction = (15.0 / 32.0) * (10.0 / 60.0);
 
         public static final double steerRadiansPerEncRev = steerGearReduction * 2.0 * Math.PI;
 
         public static final double steerRadiansPerSecPerEncRPM = steerRadiansPerEncRev / 60.0;
         
-        // TODO Choose the free speed for the configuration of your modules. This value is for MK4i L3 modules with NEO Vortexes.
-        // This value can be found on the SDS website.
-        public static final double driveFreeSpeedMetersPerSec = Units.feetToMeters(19.3);
+        
+        public static final double driveFreeSpeedMetersPerSec = Units.feetToMeters(20.1);
 
         public static final double driveFreeSpeedRadPerSec = driveFreeSpeedMetersPerSec / wheelRadiusMeters;
 
-        // TODO Set these values for the specifications of your drive motors. These are the specs of a NEO Vortex.
         public static final double driveNominalOperatingVoltage = 12.0;
         public static final double driveStallTorqueNewtonMeters = 3.6 / driveGearReduction; // Motor's stall torque times gear ratio
         public static final double driveStallCurrentAmps = 211.0;
@@ -120,15 +120,15 @@ public final class Constants {
     }
 
 	public static class SwerveDriveConstants {
-        public static final Rotation2d flModuleOffset = Rotation2d.fromDegrees(123.13);
-        public static final Rotation2d frModuleOffset = Rotation2d.fromDegrees(184.13);
-        public static final Rotation2d blModuleOffset = Rotation2d.fromDegrees(66.18);
-        public static final Rotation2d brModuleOffset = Rotation2d.fromDegrees(78.39);
+        public static final Rotation2d flModuleOffset = Rotation2d.fromDegrees(32.08);
+        public static final Rotation2d frModuleOffset = Rotation2d.fromDegrees(164.17);
+        public static final Rotation2d blModuleOffset = Rotation2d.fromDegrees(71.68);
+        public static final Rotation2d brModuleOffset = Rotation2d.fromDegrees(116.9);
 
 		// TODO Set these dimensions for the distance between the center of each wheel.
         // Note that these values are different from the robot's overall dimenstions.
-		public static final double chassisLengthMeters = Units.inchesToMeters(24.0);
-        public static final double chassisWidthMeters = Units.inchesToMeters(24.0);
+		public static final double chassisLengthMeters = Units.inchesToMeters(21.75);
+        public static final double chassisWidthMeters = Units.inchesToMeters(21.75);
 
         public static final double chassisRadiusMeters = Math.hypot(chassisLengthMeters, chassisWidthMeters);
 
@@ -139,7 +139,7 @@ public final class Constants {
             new Translation2d(-chassisWidthMeters / 2.0, -chassisLengthMeters / 2.0) // back right
         );
 
-        public static final double maxAttainableSpeedMetersPerSec = 5.8;
+        public static final double maxAttainableSpeedMetersPerSec = Units.feetToMeters(20.1);
         public static final double maxAttainableRotationRadPerSec = 13.4;
 
         public static final double skewCompensationRatioOmegaPerTheta = 0.1;
@@ -151,4 +151,43 @@ public final class Constants {
         public static final double autoRotationKp = 5.0;
         public static final double autoRotationKd = 0.0;
     }
+
+    public static class ElevatorConstants {
+        public static final int maxElevatorCurrentAmps = 50;
+
+        public static final double gearRatio = 5.0;
+        
+        public static final double kP = 0.03; // 0.035
+        public static final double kD = 0.0; // 0.00037
+
+        public static final double sprocketDiameter = 0.9;
+
+        public static final double inchesPerEncRev = ((2 * sprocketDiameter) / gearRatio);
+        public static final double inchesPerSecPerRPM = ((2 * sprocketDiameter) / gearRatio * 60.0);
+
+        public static final double freeSpeedInchesPerSec = 6784.0 / gearRatio * sprocketDiameter;
+
+        public static final double maxVelInchesPerSec = 50.0; // 400.0
+
+        public static final double maxAccelInchesPerSecSq = 250.0; // 575.0
+
+        public static final double maxManualInchesPerSec = 100.0;
+
+        public static final double  maxManualInchesPerSecSq = 100.0;
+
+        public static final double coralOnePresetInches = -10.0;
+ 
+        public static final double coralTwoPresetInches = -20.0;
+
+        public static final double coralThreePresetInches = -30.0;
+
+        public static final double homePresetInches = 0.0;
+
+        public static final double lowerLimitInches = -30f;
+
+        public static final double upperLimitInches = 0f; // 47.47
+
+        public static final double toleranceInches = 0.1;
+
+     }
 }

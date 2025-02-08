@@ -64,23 +64,26 @@ package frc.robot.subsystems;
  
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.revrobotics.spark.SparkClosedLoopController;
 
 
-public class AlageSys extends SubsystemBase {
+public class AlgaeSys extends SubsystemBase {
 
-    SparkFlex flex = new SparkFlex(algaeRoller, MotorType.kBrushless);
-   SparkMaxConfig config = new SparkMaxConfig();
+//     SparkFlex flex = new SparkFlex(algaeRoller, MotorType.kBrushless);
+//    SparkMaxConfig config = new SparkMaxConfig();
 
 
-config
-    .inverted(true)
-    .idleMode(IdleMode.kBrake);
-config.encoder
-    .positionConversionFactor(1000)
-    .velocityConversionFactor(1000);
-config.closedLoop
-    .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-    .pid(1.0, 0.0, 0.0);
+// config
+//     .inverted(true)
+//     .idleMode(IdleMode.kBrake);
+// config.encoder
+//     .positionConversionFactor(1000)
+//     .velocityConversionFactor(1000);
+// config.closedLoop
+//     .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+//     .pid(1.0, 0.0, 0.0);
 
 }
